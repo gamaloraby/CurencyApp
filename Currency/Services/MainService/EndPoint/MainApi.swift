@@ -10,10 +10,15 @@ import Foundation
 import Alamofire
 
 enum RatesNetworking {
+   
     case getRates
+   
 }
 
 extension RatesNetworking: TargetType {
+    
+    
+
     var baseURL: String {
         switch self {
         case .getRates:
@@ -24,7 +29,7 @@ extension RatesNetworking: TargetType {
     var path: String {
         switch self {
         case .getRates:
-            return "/latest"
+            return "/latest?access_key=\(HOST.access_key)"
         }
     }
     

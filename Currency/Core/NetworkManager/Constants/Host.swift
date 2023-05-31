@@ -22,7 +22,8 @@ extension HOST {
             return Configuration.value(for: .baseURL)
         }
     }
-
+    
+    static let access_key = "c0ee4c6b46637f0d651ae8232139da69"
     /// setting the base url by confirming the protocol attribute
     var baseUrl: String {
         guard let baseString = baseString
