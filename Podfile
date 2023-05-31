@@ -6,4 +6,5 @@ target 'Currency' do
   use_frameworks!
   pod 'Alamofire'
   pod 'RxSwift'
+  pod 'SwiftLint'
 end
