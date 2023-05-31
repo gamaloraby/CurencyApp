@@ -10,11 +10,13 @@ import Alamofire
 
 class BaseAPI<T: TargetType> {
     
-    func fetchData<M: Decodable>(target: T, responseClass: M.Type, completion:@escaping (M?,Error?) -> Void) {
+    let access_key = "91814058556defdb366b8973dc42817e"
+    
+    func request<M: Decodable>(target: T, responseClass: M.Type, completion:@escaping (M?,Error?) -> Void) {
         let method = Alamofire.HTTPMethod(rawValue: target.method.rawValue)
         let headers = Alamofire.HTTPHeaders(target.headers ?? [:])
         let params = buildParams(task: target.task)
-        let access_key = "91814058556defdb366b8973dc42817e"
+    
         let url = "\(target.baseURL)\(target.path)?access_key=\(access_key)"
         AF.request(url, method: method, parameters: params.0, encoding: params.1, headers: headers).responseJSON { (response) in
             guard let statusCode = response.response?.statusCode else {

@@ -46,9 +46,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,9 +62,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,9 +78,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,9 +94,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,9 +110,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,9 +126,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,9 +142,9 @@
             filePath = "Currency/Core/NetworkManager/Manager/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "fetchData(target:responseClass:completion:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "request(target:responseClass:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

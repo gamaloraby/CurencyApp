@@ -9,35 +9,35 @@
 import Foundation
 import Alamofire
 
-enum UsersNetworking {
-    case getUsers
+enum RatesNetworking {
+    case getRates
 }
 
-extension UsersNetworking: TargetType {
+extension RatesNetworking: TargetType {
     var baseURL: String {
         switch self {
-        case .getUsers:
+        case .getRates:
             return "http://data.fixer.io/api"
         }
     }
     
     var path: String {
         switch self {
-        case .getUsers:
+        case .getRates:
             return "/latest"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getUsers:
+        case .getRates:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .getUsers:
+        case .getRates:
             return .requestPlain
 
         }

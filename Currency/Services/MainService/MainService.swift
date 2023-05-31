@@ -4,10 +4,10 @@ protocol MainAPiProtocol {
     func getUsers(completion: @escaping (RatesResponse?, Error?) -> Void)
 }
 
-class UsersAPI: BaseAPI<UsersNetworking>, MainAPiProtocol {
+class UsersAPI: BaseAPI<RatesNetworking>, MainAPiProtocol {
     //MARK:- Requests
     func getUsers(completion: @escaping (RatesResponse?, Error?) -> Void) {
-        self.fetchData(target: .getUsers, responseClass: RatesResponse.self) { (result, error) in
+        self.request(target: .getRates, responseClass: RatesResponse.self) { (result, error) in
             completion(result, error)
         }
     }
