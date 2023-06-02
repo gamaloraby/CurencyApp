@@ -21,10 +21,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getCurrencyCodes()
-        setPickersView()
-        iniateTextFields()
-        setupIntialInputsValues()
+        viewModel.getCurrencyCodes { [weak self] in
+            self?.setPickersView()
+            self?.iniateTextFields()
+            self?.setupIntialInputsValues()
+        }
     }
 
     private func setPickersView() {
@@ -78,7 +79,8 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func openDetails(_ sender: Any) {
-        print("pressed")
+        let vc = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
