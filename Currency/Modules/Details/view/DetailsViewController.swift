@@ -64,7 +64,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
            view.backgroundColor =  .gray
            let lbl = UILabel(frame: CGRect(x: 32, y: 0, width: view.frame.width - 15, height: 40))
            lbl.font = UIFont.systemFont(ofSize: 20)
-        lbl.text = viewModel.storedDataDay(section: section)
+           lbl.text = viewModel.storedDataDay(section: section)
            view.addSubview(lbl)
            return view
          }

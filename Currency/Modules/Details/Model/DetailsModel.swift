@@ -10,7 +10,7 @@ import Foundation
 struct CurencyRate {
     let currencyFromCode: String
     let currencyToCode: String
-    let day: Int
+    let day: String
     let amount: Double
     let enterdAmount: Double
     let currencyFromRate: Double

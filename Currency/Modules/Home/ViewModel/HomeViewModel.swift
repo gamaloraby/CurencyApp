@@ -55,12 +55,11 @@ class HomeViewModel {
         self.toCurrencyValue = value
     }
     
-    func getDayDate() -> Int {
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: date)
-        let day = components.day ?? 0
-        return day
+    func getDayDate() -> String {
+        let date = Date.now
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter.string(from: date)
     }
     
     func getConvertedAmount(amount: String?, completion: @escaping (Double) -> Void ) {
