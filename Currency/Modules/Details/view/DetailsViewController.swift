@@ -53,9 +53,9 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(CurrencyHistoryCell.self)", for: indexPath) as?  CurrencyHistoryCell else {return UITableViewCell()}
-        cell.setCellData(with: viewModel.cellDataInRow(in: indexPath.section, row: indexPath.row))
+        let values = viewModel.getPopularCurencies(in: indexPath.section, at: indexPath.row)
+        cell.setCellData(with: viewModel.cellDataInRow(in: indexPath.section, row: indexPath.row), popularRates: values)
         cell.selectionStyle = .none
-        viewModel.getPopularCurencies(in: indexPath.section, at: indexPath.row)
         return cell
     }
     

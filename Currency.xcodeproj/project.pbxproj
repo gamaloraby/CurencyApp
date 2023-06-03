@@ -26,6 +26,8 @@
 		DCD32CB72A287CA000A80560 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CB62A287CA000A80560 /* DataManager.swift */; };
 		DCD32CBB2A2894E800A80560 /* CurrencyHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CB92A2894E800A80560 /* CurrencyHistoryCell.swift */; };
 		DCD32CBC2A2894E800A80560 /* CurrencyHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD32CBA2A2894E800A80560 /* CurrencyHistoryCell.xib */; };
+		DCD32CBF2A2B508200A80560 /* PopularRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CBD2A2B508100A80560 /* PopularRates.swift */; };
+		DCD32CC02A2B508200A80560 /* PopularRates.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD32CBE2A2B508100A80560 /* PopularRates.xib */; };
 		DCDB791E2A273F4A00648A61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791D2A273F4A00648A61 /* HomeViewModel.swift */; };
 		DCDB79202A273F5600648A61 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791F2A273F5600648A61 /* HomeModel.swift */; };
 		DCF3ED792A2601920051C336 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3ED782A2601920051C336 /* NetworkManager.swift */; };
@@ -83,6 +85,8 @@
 		DCD32CB62A287CA000A80560 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DCD32CB92A2894E800A80560 /* CurrencyHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHistoryCell.swift; sourceTree = "<group>"; };
 		DCD32CBA2A2894E800A80560 /* CurrencyHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyHistoryCell.xib; sourceTree = "<group>"; };
+		DCD32CBD2A2B508100A80560 /* PopularRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRates.swift; sourceTree = "<group>"; };
+		DCD32CBE2A2B508100A80560 /* PopularRates.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularRates.xib; sourceTree = "<group>"; };
 		DCDB791D2A273F4A00648A61 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DCDB791F2A273F5600648A61 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		DCF3ED782A2601920051C336 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -341,6 +345,8 @@
 			children = (
 				DCD32CB92A2894E800A80560 /* CurrencyHistoryCell.swift */,
 				DCD32CBA2A2894E800A80560 /* CurrencyHistoryCell.xib */,
+				DCD32CBD2A2B508100A80560 /* PopularRates.swift */,
+				DCD32CBE2A2B508100A80560 /* PopularRates.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -533,6 +539,7 @@
 				DC307A902A254C2B003639C4 /* HomeViewController.xib in Resources */,
 				DCD32CBC2A2894E800A80560 /* CurrencyHistoryCell.xib in Resources */,
 				DCD32CB12A28781300A80560 /* DetailsViewController.xib in Resources */,
+				DCD32CC02A2B508200A80560 /* PopularRates.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +623,7 @@
 				DCD32CA82A2790F100A80560 /* CurrencyManager.swift in Sources */,
 				DCD32CB02A28781300A80560 /* DetailsViewController.swift in Sources */,
 				DC8136F92A253D28001455B6 /* AppDelegate.swift in Sources */,
+				DCD32CBF2A2B508200A80560 /* PopularRates.swift in Sources */,
 				DCF3ED8B2A2605FE0051C336 /* ConfigurationManger.swift in Sources */,
 				DC8136FB2A253D28001455B6 /* SceneDelegate.swift in Sources */,
 				DCF3ED922A26099E0051C336 /* MainService.swift in Sources */,

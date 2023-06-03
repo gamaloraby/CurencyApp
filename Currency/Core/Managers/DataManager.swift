@@ -53,5 +53,15 @@ class DataManager {
         }
     }
     
-    
+    func deleteObject(item: Rate) {
+        let context = appDelegate.persistentContainer.viewContext
+        context.delete(item as NSManagedObject)
+        do {
+            try context.save()
+        } catch
+        let error as NSError {
+            print("Could not save. \(error),\(error.userInfo)")
+        }
+    }
+
 }

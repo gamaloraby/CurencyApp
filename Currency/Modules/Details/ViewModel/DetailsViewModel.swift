@@ -53,27 +53,34 @@ class DetailsViewModel {
         return "\(histoiricalData[Int64(keys[section]) ?? 0]?[0].day ?? 0)"
     }
     
-    func getPopularCurencies(in section: Int, at row: Int) {
+    func getPopularCurencies(in section: Int, at row: Int) -> [String] {
         if let ratesCurrencyKeys = userDefaults.array(forKey: currencyCodsKey) as? [String], let currencyRatesList = userDefaults.array(forKey: ratesKey) as? [Double]{
-            self.currencyCodesList = ratesCurrencyKeys
-            self.ratesList = currencyRatesList
-            var count = 0
-            for (index, currencyCode) in  currencyCodesList.enumerated() {
-                if self.popularCurrenciesList.contains(currencyCode) {
-                    guard let data = histoiricalData[Int64(keys[section]) ?? 0]?[row] else {return}
-                    if self.popularCurrenciesList.contains(data.currencyFromCode ?? "") && currencyCodesList[index] == data.currencyFromCode ?? "" {
-                        continue
-                    } else {
-                        if count == 10 {
-                           break
-                        } else{
-                            let value = currencyManager?.getConvertedValue(fromRate: data.currencyFromRate, toRate: ratesList[index], amount: data.enteredAmount)
-                            count += 1
-                            print("\(row) === \(value)=== \(count)")
-                        }
+                self.currencyCodesList = ratesCurrencyKeys
+                self.ratesList = currencyRatesList
+            }
+        let popularConvertedCurencies = calculatePopularCurncies(section: section, row: row)
+        return popularConvertedCurencies
+    }
+    
+    private func calculatePopularCurncies(section: Int, row: Int) -> [String] {
+        var count = 0
+        var topPopularRates = [String]()
+        for (index, currencyCode) in  currencyCodesList.enumerated() {
+            if self.popularCurrenciesList.contains(currencyCode) {
+                guard let data = histoiricalData[Int64(keys[section]) ?? 0]?[row] else {return[]}
+                if self.popularCurrenciesList.contains(data.currencyFromCode ?? "") && currencyCodesList[index] == data.currencyFromCode ?? "" {
+                    continue
+                } else {
+                    if count == 10 {
+                       break
+                    } else{
+                        guard let value = currencyManager?.getConvertedValue(fromRate: ratesList[index], toRate: data.currencyFromRate, amount: data.enteredAmount) else {return []}
+                        topPopularRates.append("\(popularCurrenciesList[count]) \(value)")
+                        count += 1
                     }
                 }
             }
-        }    
+        }
+        return topPopularRates
     }
 }
