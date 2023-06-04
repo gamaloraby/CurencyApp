@@ -10,6 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Currency" customModuleProvider="target">
             <connections>
+                <outlet property="currencyFromTextField" destination="KJ3-aJ-GkB" id="ttp-dN-lwW"/>
+                <outlet property="currencyFromValue" destination="WuS-Us-cui" id="nKf-pq-7H6"/>
+                <outlet property="currencyToTextField" destination="8Yd-C2-unn" id="gF9-um-kfv"/>
+                <outlet property="currencyToValue" destination="2Ni-hj-BeJ" id="LYo-U7-Zrm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,14 +21,102 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWV-Fm-IPf">
+                    <rect key="frame" x="0.0" y="164" width="414" height="124"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KJ3-aJ-GkB">
+                            <rect key="frame" x="16" y="-1" width="143" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7F-J9-XAN">
+                            <rect key="frame" x="175" y="0.0" width="64" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="jLm-vg-XLX"/>
+                                <constraint firstAttribute="height" constant="32" id="n2A-Fa-aQM"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="exchange"/>
+                            <connections>
+                                <action selector="exchangeCurrency:" destination="-1" eventType="touchUpInside" id="3rb-Nu-Prt"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Yd-C2-unn">
+                            <rect key="frame" x="255" y="-1" width="143" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WuS-Us-cui">
+                            <rect key="frame" x="16" y="41" width="143" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ni-hj-BeJ">
+                            <rect key="frame" x="255" y="41" width="143" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLX-Qv-jvX">
+                            <rect key="frame" x="167" y="84" width="80" height="32"/>
+                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Yf8-k7-KUu"/>
+                                <constraint firstAttribute="width" constant="80" id="tnm-Qq-Sd5"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Details">
+                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="openDetails:" destination="-1" eventType="touchUpInside" id="igc-2x-dQG"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="yLX-Qv-jvX" secondAttribute="bottom" constant="8" id="4hl-CP-Ib7"/>
+                        <constraint firstItem="8Yd-C2-unn" firstAttribute="leading" secondItem="U7F-J9-XAN" secondAttribute="trailing" constant="16" id="514-Ov-Mme"/>
+                        <constraint firstItem="U7F-J9-XAN" firstAttribute="centerX" secondItem="hWV-Fm-IPf" secondAttribute="centerX" id="93S-Jn-eDK"/>
+                        <constraint firstItem="2Ni-hj-BeJ" firstAttribute="top" secondItem="8Yd-C2-unn" secondAttribute="bottom" constant="8" id="FOS-Po-kOg"/>
+                        <constraint firstItem="WuS-Us-cui" firstAttribute="top" secondItem="KJ3-aJ-GkB" secondAttribute="bottom" constant="8" id="HaK-Pb-rua"/>
+                        <constraint firstItem="2Ni-hj-BeJ" firstAttribute="leading" secondItem="8Yd-C2-unn" secondAttribute="leading" id="HdM-AS-RVq"/>
+                        <constraint firstItem="WuS-Us-cui" firstAttribute="leading" secondItem="KJ3-aJ-GkB" secondAttribute="leading" id="MPI-1s-Nrc"/>
+                        <constraint firstAttribute="trailing" secondItem="8Yd-C2-unn" secondAttribute="trailing" constant="16" id="R23-AB-79g"/>
+                        <constraint firstItem="2Ni-hj-BeJ" firstAttribute="trailing" secondItem="8Yd-C2-unn" secondAttribute="trailing" id="XfK-se-QaC"/>
+                        <constraint firstItem="U7F-J9-XAN" firstAttribute="leading" secondItem="KJ3-aJ-GkB" secondAttribute="trailing" constant="16" id="Zf7-mg-esk"/>
+                        <constraint firstItem="KJ3-aJ-GkB" firstAttribute="leading" secondItem="hWV-Fm-IPf" secondAttribute="leading" constant="16" id="bq4-jk-rJB"/>
+                        <constraint firstItem="KJ3-aJ-GkB" firstAttribute="centerY" secondItem="U7F-J9-XAN" secondAttribute="centerY" id="ckw-re-uGJ"/>
+                        <constraint firstItem="yLX-Qv-jvX" firstAttribute="centerX" secondItem="hWV-Fm-IPf" secondAttribute="centerX" id="enb-bF-GJh"/>
+                        <constraint firstItem="8Yd-C2-unn" firstAttribute="centerY" secondItem="U7F-J9-XAN" secondAttribute="centerY" id="kT8-8B-sMg"/>
+                        <constraint firstAttribute="height" constant="124" id="kV7-pB-DE0"/>
+                        <constraint firstItem="WuS-Us-cui" firstAttribute="trailing" secondItem="KJ3-aJ-GkB" secondAttribute="trailing" id="lRe-bI-X3c"/>
+                        <constraint firstItem="U7F-J9-XAN" firstAttribute="top" secondItem="hWV-Fm-IPf" secondAttribute="top" id="wcg-vE-7gf"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemGreenColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hWV-Fm-IPf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="7BA-oJ-3D2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hWV-Fm-IPf" secondAttribute="trailing" id="bmu-xR-l2Y"/>
+                <constraint firstItem="hWV-Fm-IPf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wFO-xY-UZE"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="85"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="exchange" width="32" height="32"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
