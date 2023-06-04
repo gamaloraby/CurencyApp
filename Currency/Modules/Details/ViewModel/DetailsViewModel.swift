@@ -90,8 +90,8 @@ class DetailsViewModel {
                 } else {
                     if count == 10 {
                        break
-                    } else{
-                        guard let value = currencyManager?.getConvertedValue(fromRate: ratesList[index], toRate: data.currencyFromRate, amount: data.enteredAmount) else {return []}
+                    } else {
+                        guard let value = currencyManager?.getConvertedValue(fromRate:  data.currencyFromRate, toRate: ratesList[index], amount: data.enteredAmount) else {return []}
                         topPopularRates.append("\(popularCurrenciesList[count]) \(value)")
                         count += 1
                     }

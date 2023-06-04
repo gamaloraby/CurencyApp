@@ -15,15 +15,24 @@ class BaseAPI<T: TargetType> {
         let headers = Alamofire.HTTPHeaders(target.headers ?? [:])
         let params = buildParams(task: target.task)
         let url = "\(target.baseURL)\(target.path)"
+        
+        let reachability = try? Reachability.init()
+        if reachability!.connection == .unavailable {
+            let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey: ErrorMessage.internetMessage])
+            completion(nil, error)
+            return
+
+        }
         AF.request(url, method: method, parameters: params.0, encoding: params.1, headers: headers).responseJSON { (response) in
             guard let statusCode = response.response?.statusCode else {
                 // ADD Custom Error
                 let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey: ErrorMessage.genericError])
+                // time out
                 completion(nil, error)
                 return
             }
-            if statusCode == 200 { // 200 reflect success response
-                // Successful request
+            if statusCode == 200 {
+                // Successful
                 guard let jsonResponse = try? response.result.get() else {
                     // ADD Custom Error
                     let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey: ErrorMessage.genericError])
@@ -44,8 +53,6 @@ class BaseAPI<T: TargetType> {
                 }
                 completion(responseObj, nil)
             } else {
-                // ADD custom error base on status code 404 / 401 /
-                // Error Parsing for the error message from the BE
                 let message = "Error Message Parsed From BE"
                 let error = NSError(domain: target.baseURL, code: statusCode, userInfo: [NSLocalizedDescriptionKey: message])
                 completion(nil, error)
@@ -66,4 +73,5 @@ class BaseAPI<T: TargetType> {
 
 struct ErrorMessage {
     static let genericError = "Something went wrong please try again later"
+    static let internetMessage = "No Interned Conection"
 }

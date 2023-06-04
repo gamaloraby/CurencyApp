@@ -28,8 +28,12 @@
 		DCD32CBC2A2894E800A80560 /* CurrencyHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD32CBA2A2894E800A80560 /* CurrencyHistoryCell.xib */; };
 		DCD32CBF2A2B508200A80560 /* PopularRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CBD2A2B508100A80560 /* PopularRates.swift */; };
 		DCD32CC02A2B508200A80560 /* PopularRates.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD32CBE2A2B508100A80560 /* PopularRates.xib */; };
-		DCDB791E2A273F4A00648A61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791D2A273F4A00648A61 /* HomeViewModel.swift */; };
+		DCD32CC22A2BD77900A80560 /* ServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CC12A2BD77900A80560 /* ServiceTest.swift */; };
+		DCD32CC62A2BDBC900A80560 /* MainApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3ED992A260B410051C336 /* MainApi.swift */; };
+		DCD32CC82A2BDC0400A80560 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A349A2A273A6500B5894C /* Errors.swift */; };
 		DCDB79202A273F5600648A61 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791F2A273F5600648A61 /* HomeModel.swift */; };
+		DCEFED072A2C0AED00A719A9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791D2A273F4A00648A61 /* HomeViewModel.swift */; };
+		DCEFED0C2A2C1D2D00A719A9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEFED0B2A2C1D2D00A719A9 /* Reachability.swift */; };
 		DCF3ED792A2601920051C336 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3ED782A2601920051C336 /* NetworkManager.swift */; };
 		DCF3ED7D2A2603470051C336 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3ED7C2A2603470051C336 /* Request.swift */; };
 		DCF3ED872A2605970051C336 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3ED862A2605970051C336 /* Host.swift */; };
@@ -87,8 +91,10 @@
 		DCD32CBA2A2894E800A80560 /* CurrencyHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyHistoryCell.xib; sourceTree = "<group>"; };
 		DCD32CBD2A2B508100A80560 /* PopularRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRates.swift; sourceTree = "<group>"; };
 		DCD32CBE2A2B508100A80560 /* PopularRates.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularRates.xib; sourceTree = "<group>"; };
+		DCD32CC12A2BD77900A80560 /* ServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTest.swift; sourceTree = "<group>"; };
 		DCDB791D2A273F4A00648A61 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DCDB791F2A273F5600648A61 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		DCEFED0B2A2C1D2D00A719A9 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		DCF3ED782A2601920051C336 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DCF3ED7C2A2603470051C336 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DCF3ED862A2605970051C336 /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
@@ -200,6 +206,7 @@
 		DC307A8B2A254C10003639C4 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				DCEFED082A2C1ABC00A719A9 /* Reachability */,
 				DCF3ED9D2A261F7B0051C336 /* Response */,
 				DCF3ED7E2A2603B70051C336 /* Constants */,
 				DCF3ED7B2A2603390051C336 /* Request */,
@@ -282,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				DC8137122A253D2A001455B6 /* CurrencyTests.swift */,
+				DCD32CC12A2BD77900A80560 /* ServiceTest.swift */,
 			);
 			path = CurrencyTests;
 			sourceTree = "<group>";
@@ -349,6 +357,14 @@
 				DCD32CBE2A2B508100A80560 /* PopularRates.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		DCEFED082A2C1ABC00A719A9 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				DCEFED0B2A2C1D2D00A719A9 /* Reachability.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		DCF3ED752A2551010051C336 /* Support Files */ = {
@@ -611,6 +627,7 @@
 				DC307A8F2A254C2B003639C4 /* HomeViewController.swift in Sources */,
 				DCF3ED7D2A2603470051C336 /* Request.swift in Sources */,
 				DCF3ED962A260AC60051C336 /* MainRequest.swift in Sources */,
+				DCEFED072A2C0AED00A719A9 /* HomeViewModel.swift in Sources */,
 				DCDB79202A273F5600648A61 /* HomeModel.swift in Sources */,
 				DCF3ED9A2A260B410051C336 /* MainApi.swift in Sources */,
 				DCF3ED9F2A261F880051C336 /* BaseResponse.swift in Sources */,
@@ -619,6 +636,7 @@
 				DCD32CB72A287CA000A80560 /* DataManager.swift in Sources */,
 				DC8137032A253D28001455B6 /* Currency.xcdatamodeld in Sources */,
 				DCF3ED792A2601920051C336 /* NetworkManager.swift in Sources */,
+				DCEFED0C2A2C1D2D00A719A9 /* Reachability.swift in Sources */,
 				DCD32CBB2A2894E800A80560 /* CurrencyHistoryCell.swift in Sources */,
 				DCD32CA82A2790F100A80560 /* CurrencyManager.swift in Sources */,
 				DCD32CB02A28781300A80560 /* DetailsViewController.swift in Sources */,
@@ -627,7 +645,6 @@
 				DCF3ED8B2A2605FE0051C336 /* ConfigurationManger.swift in Sources */,
 				DC8136FB2A253D28001455B6 /* SceneDelegate.swift in Sources */,
 				DCF3ED922A26099E0051C336 /* MainService.swift in Sources */,
-				DCDB791E2A273F4A00648A61 /* HomeViewModel.swift in Sources */,
 				DCF3ED982A260ADA0051C336 /* MainResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,6 +654,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC8137132A253D2A001455B6 /* CurrencyTests.swift in Sources */,
+				DCD32CC62A2BDBC900A80560 /* MainApi.swift in Sources */,
+				DCD32CC22A2BD77900A80560 /* ServiceTest.swift in Sources */,
+				DCD32CC82A2BDC0400A80560 /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

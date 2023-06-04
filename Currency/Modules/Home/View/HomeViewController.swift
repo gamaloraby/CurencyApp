@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UIViewController {
     
@@ -16,18 +17,59 @@ class HomeViewController: UIViewController {
 
     private var fromCurrencyPicker = UIPickerView()
     private var toCurrencyPicker =  UIPickerView()
-    
+    private let detailsViewName = "DetailsViewController"
     private let viewModel = HomeViewModel()
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getCurrencyCodes { [weak self] in
-            self?.setPickersView()
-            self?.iniateTextFields()
-            self?.setupIntialInputsValues()
-        }
+        viewModel.getCurrencyCodes()
+        setRXChanales()
     }
-
+    
+    private func setRXChanales() {
+        viewModel.currencyCodesList.subscribe(onNext: { [weak self] currencyCodesList in
+            if currencyCodesList.count > 0 {
+                self?.setPickersView()
+                self?.iniateTextFields()
+                self?.setupIntialInputsValues()
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.fromCurencyText.subscribe(onNext: { [weak self] response in
+            self?.currencyFromTextField.text = response
+            let index = self?.viewModel.currencyCodesList.value.firstIndex { code in
+                code == response
+            }
+            self?.setFromCurrencyPickerIndex(with: index ?? 0)
+        }).disposed(by: disposeBag)
+        
+        viewModel.toCurencyValueText.subscribe(onNext: { [weak self] value in
+            self?.currencyToTextField.text = value
+            let index = self?.viewModel.currencyCodesList.value.firstIndex { code in
+                code == value
+            }
+            self?.setToCurrencyPickerIndex(with: index ?? 0)
+        }).disposed(by: disposeBag)
+        
+        viewModel.fromCurencyValue.subscribe(onNext: { [weak self] value in
+            self?.currencyFromValue.text = value
+        }).disposed(by: disposeBag)
+        
+        viewModel.toCurencyValue.subscribe(onNext: { [weak self] value in
+            self?.currencyToValue.text = value
+        }).disposed(by: disposeBag)
+        
+        viewModel.ratesList.subscribe(onNext: { [weak self] value in
+            if value.count > 0 {
+                self?.setPickersView()
+                self?.iniateTextFields()
+                self?.setupIntialInputsValues()
+            }
+        }).disposed(by: disposeBag)
+        
+    }
+    
     private func setPickersView() {
         fromCurrencyPicker.delegate = self
         fromCurrencyPicker.dataSource = self
@@ -55,6 +97,14 @@ class HomeViewController: UIViewController {
 
     }
     
+    func setFromCurrencyPickerIndex(with row: Int) {
+        fromCurrencyPicker.selectRow(row, inComponent: 0, animated: true)
+    }
+    
+    func setToCurrencyPickerIndex(with row: Int) {
+        toCurrencyPicker.selectRow(row, inComponent: 0, animated: true)
+    }
+    
     @objc func textFieldDidChange(textField: UITextField) {
         guard let text = textField.text else {return}
         viewModel.getConvertedAmount(amount: text) { value in
@@ -63,23 +113,11 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func exchangeCurrency(_ sender: Any) {
-        
-        self.viewModel.toCurrencyValue(value: currencyToValue.text ?? "")
-        self.viewModel.fromCurrencyValue(value:  currencyFromValue.text ?? "")
-        viewModel.exchangeCodes { [weak self] (toIndex, fromIndex) in
-            self?.viewModel.selectedToCurrencyIndex(index: toIndex)
-            self?.viewModel.selectedFromCurrencyIndex(index: fromIndex)
-            self?.currencyFromTextField.text = self?.viewModel.titleForRow(row: fromIndex)
-            self?.currencyToTextField.text = self?.viewModel.titleForRow(row: toIndex)
-        }
-        viewModel.exchangeValues { [weak self] (toValue, fromValue) in
-            self?.currencyToValue.text = toValue
-            self?.currencyFromValue.text = fromValue
-        }
+        self.viewModel.switchCurancy(from: currencyFromValue.text ?? "", to: currencyToValue.text ?? "")
     }
     
     @IBAction func openDetails(_ sender: Any) {
-        let vc = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
+        let vc = DetailsViewController(nibName: detailsViewName, bundle: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

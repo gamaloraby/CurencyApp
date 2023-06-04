@@ -7,15 +7,22 @@
 
 import Foundation
 import RxSwift
+import RxRelay
+
 
 class HomeViewModel {
     
     private let userDefaults = UserDefaults.standard
-    private var currencyCodesList: [String]?
-    private var ratesList: [Double]?
-    private let api: MainAPiProtocol = UsersAPI()
+    var currencyCodesList = BehaviorRelay<[String]>(value: [])
+    var ratesList = BehaviorRelay<[Double]>(value: [])
+    var fromCurencyValue = BehaviorRelay<String>(value: "")
+    var fromCurencyText = BehaviorRelay<String>(value: "")
+    var toCurencyValue = BehaviorRelay<String>(value: "")
+    var toCurencyValueText = BehaviorRelay<String>(value: "")
+    private let api: MainAPiProtocol = RatesAPI()
     private var currencyCodsKey = "currencyCods"
     private var ratesKey = "ratesKey"
+    private var entityName = "Rate"
     private var fromCurrencyIndex = 0
     private var toCurrencyIndex = 0
     private var initialAmount = 1.0
@@ -32,11 +39,11 @@ class HomeViewModel {
     }
     
     func numberOfRowsInComponent() -> Int {
-        return currencyCodesList?.count ?? 0
+        return currencyCodesList.value.count
     }
     
     func titleForRow(row: Int) -> String {
-        return currencyCodesList?[row] ?? ""
+        return currencyCodesList.value[row]
     }
     
     func selectedFromCurrencyIndex(index: Int) {
@@ -61,20 +68,30 @@ class HomeViewModel {
         formatter.dateStyle = .long
         return formatter.string(from: date)
     }
+    func switchCurancy(from value : String, to: String) {
+        exchangeCodes { [weak self] (toIndex, fromIndex) in
+            self?.selectedToCurrencyIndex(index: toIndex)
+            self?.selectedFromCurrencyIndex(index: fromIndex)
+            self?.fromCurencyText.accept(self?.titleForRow(row: fromIndex) ?? "")
+            self?.toCurencyValueText.accept(self?.titleForRow(row: toIndex) ?? "")
+        }
+            self.fromCurencyValue.accept(to)
+            self.toCurencyValue.accept(value)
+    }
     
     func getConvertedAmount(amount: String?, completion: @escaping (Double) -> Void ) {
         if let enterdAmount = amount {
             guard let convertedAmount = Double(enterdAmount) else {return}
             self.initialAmount = convertedAmount
-            var value = currencyManager?.getConvertedValue(fromRate: ratesList?[fromCurrencyIndex] ?? 0, toRate: ratesList?[toCurrencyIndex] ?? 0, amount: convertedAmount)
+            var value = currencyManager?.getConvertedValue(fromRate: ratesList.value[fromCurrencyIndex], toRate: ratesList.value[toCurrencyIndex] , amount: convertedAmount)
             value = Double(round(1000 * (value ?? 0)) / 1000)
             completion(value ?? 0)
-            manager.createEntity(entityName: "Rate", rate: CurencyRate(currencyFromCode: currencyCodesList?[fromCurrencyIndex] ?? " ", currencyToCode: currencyCodesList?[toCurrencyIndex] ?? "", day: getDayDate(), amount: value ?? 0, enterdAmount: convertedAmount, currencyFromRate: ratesList?[fromCurrencyIndex] ?? 0))
+            manager.createEntity(entityName: entityName, rate: CurencyRate(currencyFromCode: currencyCodesList.value[fromCurrencyIndex] , currencyToCode: currencyCodesList.value[toCurrencyIndex] , day: getDayDate(), amount: value ?? 0 , enterdAmount: convertedAmount, currencyFromRate: ratesList.value[fromCurrencyIndex]))
         } else {
-            var value = currencyManager?.getConvertedValue(fromRate: ratesList?[fromCurrencyIndex] ?? 0, toRate: ratesList?[toCurrencyIndex] ?? 0, amount: initialAmount)
+            var value = currencyManager?.getConvertedValue(fromRate: ratesList.value[fromCurrencyIndex], toRate: ratesList.value[toCurrencyIndex], amount: initialAmount)
             value = Double(round(1000 * (value ?? 0)) / 1000)
             completion(value ?? 0)
-            manager.createEntity(entityName: "Rate", rate: CurencyRate(currencyFromCode: currencyCodesList?[fromCurrencyIndex] ?? " ", currencyToCode: currencyCodesList?[toCurrencyIndex] ?? "", day: getDayDate(), amount: value ?? 0, enterdAmount: initialAmount, currencyFromRate:  ratesList?[fromCurrencyIndex] ?? 0))
+            manager.createEntity(entityName: entityName, rate: CurencyRate(currencyFromCode: currencyCodesList.value[fromCurrencyIndex], currencyToCode: currencyCodesList.value[toCurrencyIndex], day: getDayDate(), amount: value ?? 0, enterdAmount: initialAmount, currencyFromRate:  ratesList.value[fromCurrencyIndex]))
         }
         
     }
@@ -83,33 +100,21 @@ class HomeViewModel {
         completion(fromCurrencyIndex, toCurrencyIndex)
     }
     
-    func exchangeValues(completion: @escaping (String,String) -> Void) {
-        completion(self.fromCurrencyValue, self.toCurrencyValue)
-    }
-    
-    func getCurrencyCodes(completion: @escaping () -> Void) {
+    func getCurrencyCodes() {
         if let ratesCurrencyKeys = userDefaults.array(forKey: currencyCodsKey) as? [String], let currencyRatesList = userDefaults.array(forKey: ratesKey) as? [Double]{
-            self.currencyCodesList = ratesCurrencyKeys
-            self.ratesList = currencyRatesList
-            completion()
+            self.currencyCodesList.accept(ratesCurrencyKeys)
+            self.ratesList.accept(currencyRatesList)
+
         } else {
-            api.getUsers { (result, error) in
-                let ratesCurrencyKeys = result?.rates?.keys
-                let ratesListValues = result?.rates?.values
-                
-                if let ratesKeys = ratesCurrencyKeys, let ratesValues = ratesListValues {
-                    self.currencyCodesList = [String] (ratesKeys)
-                    self.ratesList = [Double] (ratesValues)
-                    self.userDefaults.set(self.currencyCodesList, forKey: self.currencyCodsKey)
-                    self.userDefaults.set(self.ratesList, forKey: self.ratesKey)
-                    completion()
-                }
+            api.getRates { (result, error) in
+                guard let returnedList = result?.rates else {return}
+                let ratesCurrencyKeys = Array(returnedList.keys)
+                let ratesListValues = Array(returnedList.values)
+                self.userDefaults.set(ratesCurrencyKeys, forKey: self.currencyCodsKey)
+                self.userDefaults.set(ratesListValues, forKey: self.ratesKey)
+                self.currencyCodesList.accept(ratesCurrencyKeys)
+                self.ratesList.accept(ratesListValues)
             }
         }
     }
-    
-    func openDetails() {
-       
-    }
-    
 }
