@@ -7,4 +7,5 @@ target 'Currency' do
   pod 'Alamofire'
   pod 'RxSwift'
   pod 'SwiftLint'
+  pod 'RxCocoa'
 end

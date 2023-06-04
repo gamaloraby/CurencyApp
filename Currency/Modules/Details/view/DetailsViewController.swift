@@ -11,32 +11,24 @@ import CoreData
 class DetailsViewController: UIViewController {
 
     @IBOutlet weak var historyDataTable: UITableView!
-    @IBOutlet weak var otherCurenciesRate: UITableView!
+
     
     private let viewModel = DetailsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setHistoryDataTable()
-        self.setOtherCurenciesRate()
         viewModel.getLastThreeDayesData { [weak self] _ in
             self?.historyDataTable.reloadData()
-           // self?.viewModel.getPopularCurencies()
-            
         }
     }
 
-    private func setHistoryDataTable(){
+    
+    private func setHistoryDataTable() {
         historyDataTable.delegate = self
         historyDataTable.dataSource = self
         historyDataTable.register(UINib(nibName: "\(CurrencyHistoryCell.self)", bundle: nil), forCellReuseIdentifier: "\(CurrencyHistoryCell.self)")
        
-    }
-    
-    private func setOtherCurenciesRate() {
-        //otherCurenciesRate.delegate = self
-        //otherCurenciesRate.dataSource = self
-        //platesList.register(UINib(nibName: "\(OnlineCheckoutPlatesCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(OnlineCheckoutPlatesCell.self)")
     }
     
 }
