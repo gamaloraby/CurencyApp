@@ -6,29 +6,34 @@
 //
 
 import XCTest
-
 @testable import Currency
+
 class ServiceTest: XCTestCase {
     
-    let service: MainService!
+    var service: RatesAPI!
     
     override func setUpWithError() throws {
-        service = MainService()
+        self.service = RatesAPI()
+    }
+    
+    override func setUp() async throws {
+        self.service = RatesAPI()
     }
     
     func testGetRates() {
-       
-        let expectation = XCTestExpectation(description: "service success")
+        let expectation = self.expectation(description: "Waiting for the retrieveAlumni call to complete.")
         var error: Error?
         var ratesResponse: RatesResponse?
-        service.getRates { (response, error) in
-            error = error
+        service.getRates { (response, err) in
+           
+            error = err
             ratesResponse = response
-            exception.fulfill()
+            XCTAssertNil(error)
+            XCTAssertNotNil(ratesResponse)
+            expectation.fulfill()
         }
         waitForExpectations(timeout: 3)
-        XCTAssertNil(error)
-        XCTAssertNotNil(ratesResponse)
+       
     }
     
     override func tearDownWithError() throws {

@@ -78,7 +78,7 @@ class HomeViewModel {
             self.fromCurencyValue.accept(to)
             self.toCurencyValue.accept(value)
     }
-    
+    // convert amount to ather curncy if has amount or default
     func getConvertedAmount(amount: String?, completion: @escaping (Double) -> Void ) {
         if let enterdAmount = amount {
             guard let convertedAmount = Double(enterdAmount) else {return}

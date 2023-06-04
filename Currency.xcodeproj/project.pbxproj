@@ -29,8 +29,6 @@
 		DCD32CBF2A2B508200A80560 /* PopularRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CBD2A2B508100A80560 /* PopularRates.swift */; };
 		DCD32CC02A2B508200A80560 /* PopularRates.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD32CBE2A2B508100A80560 /* PopularRates.xib */; };
 		DCD32CC22A2BD77900A80560 /* ServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD32CC12A2BD77900A80560 /* ServiceTest.swift */; };
-		DCD32CC62A2BDBC900A80560 /* MainApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF3ED992A260B410051C336 /* MainApi.swift */; };
-		DCD32CC82A2BDC0400A80560 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A349A2A273A6500B5894C /* Errors.swift */; };
 		DCDB79202A273F5600648A61 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791F2A273F5600648A61 /* HomeModel.swift */; };
 		DCEFED072A2C0AED00A719A9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB791D2A273F4A00648A61 /* HomeViewModel.swift */; };
 		DCEFED0C2A2C1D2D00A719A9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEFED0B2A2C1D2D00A719A9 /* Reachability.swift */; };
@@ -654,9 +652,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC8137132A253D2A001455B6 /* CurrencyTests.swift in Sources */,
-				DCD32CC62A2BDBC900A80560 /* MainApi.swift in Sources */,
 				DCD32CC22A2BD77900A80560 /* ServiceTest.swift in Sources */,
-				DCD32CC82A2BDC0400A80560 /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
